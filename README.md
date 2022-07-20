@@ -1,2 +1,1 @@
-# collatz_finder
-Tries to find a counterexample to the Collatz Conjecture, in Rust
+[Website repo](https://github.com/Rudxain/Collatz-finder)
