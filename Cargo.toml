@@ -1,0 +1,8 @@
+[package]
+name = "collatz_finder" #"collatz" was taken lol
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"
