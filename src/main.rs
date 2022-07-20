@@ -1,9 +1,11 @@
 use collatz_finder::*;
+use std::process::exit;
 
 fn main() {
 	let args: Vec<String> = std::env::args().collect();
 	if args.len() < 2 || args.iter().any(|a| a == "--help") || args.iter().any(|a| a == "-h") {
-		println!("\
+		println!(
+			"\
 			Usage: collatz_finder [n]\n\
 			n must be an integer numeral.\n\
 			Add a prefix to specify the base/radix (optional).\n\
@@ -19,16 +21,16 @@ fn main() {
 			0n (nonary, 9)\n\
 			0d (decimal, 10. standard de facto)\n\
 			0x (hexadecimal, 16)\
-		");
+		"
+		);
 		return;
 	}
 	let n = parse(&args[1]);
-	println!(
-		"{}",
-		if check(n) {
-			"counter-example VERIFIED!"
-		} else {
-			"known cycle, regular number"
-		}
-	);
+	if check(n) {
+		println!("counter-example VERIFIED!");
+		exit(1)
+	} else {
+		println!("known cycle, regular number");
+		exit(0)
+	}
 }

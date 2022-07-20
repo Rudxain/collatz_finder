@@ -1,60 +1,52 @@
 use num_bigint::BigInt;
-use num_traits::{Zero, Signed};
+use num_traits::{Signed, Zero};
 
-//for best performance on any CPU, adapt to its WS
-const WORD_SIZE: usize = std::mem::size_of::<usize>();
-
-//remove trailing 0s FAST
-fn trim(mut n: BigInt, mask: &BigInt) -> BigInt {
+fn trim(mut n: BigInt) -> BigInt {
 	if !(n.is_zero()) {
-		//word iteration (batch processing)
-		while (&n & mask).is_zero() {
-			n >>= WORD_SIZE
-		}
-		//bit iter (slow and granular)
-		while !(n.bit(0)) {
-			n >>= 1
-		}
+		n >>= n.trailing_zeros().unwrap()
 	}
 	n
 }
 
 fn f(n: BigInt) -> BigInt {
-	(if n.bit(0) { 3 * n + 1 } else { n } ) >> 1
+	(if n.bit(0) { 3 * n + 1 } else { n }) >> 1
 }
 
 pub fn check(mut n: BigInt) -> bool {
-	let lim_pos = BigInt::from((1i128 << 68) | 1);
-	let lim_neg = BigInt::from(-(1i128 << 32) | 1);
-
-	let mask = BigInt::from(!0usize);
-	n = trim(n, &mask);
+	//do now, to reduce memory use
+	n = trim(n);
 	let m = n.clone();
 
-	if n.is_negative() {
-		if n >= lim_neg {
-			return false;
-		}
-		while {
-			//do while loop
-			n = trim(f(n), &mask);
-			n < lim_neg
-		} {}
-	} else {
+	let lim_pos = BigInt::from((1i128 << 68) | 1);
+	let lim_neg = BigInt::from((-1i64 << 33) | 1);
+
+	if n.is_positive() {
 		if n <= lim_pos {
 			return false;
 		}
-		while {
-			n = trim(f(n), &mask);
-			n > lim_pos
-		} {}
+		loop {
+			n = trim(f(n));
+			if n <= lim_pos {
+				break;
+			}
+		}
+	} else {
+		if n >= lim_neg {
+			return false;
+		}
+		loop {
+			n = trim(f(n));
+			if n >= lim_neg {
+				break;
+			}
+		}
 	}
 	n == m
 }
 
 pub fn parse(raw: &str) -> BigInt {
 	let mut norm = raw.trim().to_lowercase();
-	//I think I need `match`
+	//this needs a `match`
 	let radix = if norm.starts_with("0") {
 		norm.remove(0);
 		if norm.starts_with("u") {
