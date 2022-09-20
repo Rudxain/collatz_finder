@@ -14,6 +14,7 @@ name = "colfind"
 path = "src/main.rs"
 
 [dependencies]
+clap = { version = "3.2.22", features = ["derive"] }
 num-bigint = "0.4"
 num-traits = "0.2"
 
