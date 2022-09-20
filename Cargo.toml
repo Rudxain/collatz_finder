@@ -1,5 +1,6 @@
 [package]
-name = "collatz_finder"                                                  #"collatz" was taken lol
+#"collatz" was taken lol
+name = "collatz_finder"
 description = "Get XOR hash/digest with this command-line tool"
 version = "0.0.1"
 edition = "2021"

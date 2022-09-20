@@ -37,7 +37,7 @@ const NAME: &str = "colfind";
 
 fn main() {
 	let args: Vec<String> = std::env::args().collect();
-	if args.len() < 2 || args.iter().any(|a| a == "--help") || args.iter().any(|a| a == "-h") {
+	if args.len() < 2 || args.iter().any(|a| a == "--help" || a == "-h") {
 		println!(
 			"\
 			usage: {} [n]\n\
@@ -58,7 +58,7 @@ fn main() {
 		",
 			NAME
 		);
-		return;
+		exit(0)
 	}
 	let n = parse(&args[1]).expect("invalid numeral");
 
