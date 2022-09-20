@@ -36,11 +36,14 @@ fn trim(n: BigInt) -> BigInt {
 	}
 }
 
-///shortcut Collatz function
+///extreme shortcut Collatz function
+///
+///same as "standard shortcut" but it trims all trailing zeros
 fn f(n: BigInt) -> BigInt {
-	(if n.bit(0) { 3 * n + 1 } else { n }) >> 1
+	trim(if n.bit(0) { 3 * n + 1 } else { n })
 }
 
+///check a single number against the Collatz algorithm
 pub fn check(mut n: BigInt) -> bool {
 	n = trim(n);
 	let m = n.clone();
@@ -53,7 +56,7 @@ pub fn check(mut n: BigInt) -> bool {
 			return false;
 		}
 		loop {
-			n = trim(f(n));
+			n = f(n);
 			if n <= lim_pos {
 				break;
 			}
@@ -63,7 +66,7 @@ pub fn check(mut n: BigInt) -> bool {
 			return false;
 		}
 		loop {
-			n = trim(f(n));
+			n = f(n);
 			if n >= lim_neg {
 				break;
 			}

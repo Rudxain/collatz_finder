@@ -30,17 +30,17 @@
 mod module;
 #[allow(clippy::wildcard_imports)]
 use crate::module::*;
-use std::process::exit;
-
-///program name
-const NAME: &str = "colfind";
 
 fn main() {
-	let args: Vec<String> = std::env::args().collect();
-	if args.len() < 2 || args.iter().any(|a| a == "--help" || a == "-h") {
+	///program name
+	const NAME: &str = "colfind";
+
+	let args: Vec<String> = std::env::args().skip(1).collect();
+	if args.is_empty() || args[0] == "help" {
 		println!(
-			"\
-			usage: {} [n]\n\
+			"checks or searches for counterexamples to the Collatz conjecture\n\
+			\n\
+			usage: {} [SUBCOMMAND] [n]\n\
 			n must be an integer numeral.\n\
 			Add a prefix to specify the base/radix (optional).\n\
 			Supported prefixes and their associated radices:\n\
@@ -54,23 +54,25 @@ fn main() {
 			0o (octal, 8. the \"o\" is mandatory)\n\
 			0n (nonary, 9)\n\
 			0d (decimal, 10. standard de facto)\n\
-			0x (hexadecimal, 16)\
-		",
+			0x (hexadecimal, 16)",
 			NAME
 		);
-		exit(0)
 	}
-	let n = parse(&args[1]).expect("invalid numeral");
 
-	if check(n) {
-		println!("counter-example VERIFIED!");
-		/*
-		despite the absence of an error, this situation is so extraordinary
-		that it should trigger something on automated scripts
-		*/
-		exit(1)
-	} else {
-		println!("known cycle, regular number");
-		exit(0)
-	}
+	let subcmd = &args[0];
+	assert!(
+		!(subcmd != "check" && subcmd != "search"),
+		"unrecognized subcommand"
+	);
+
+	let n = parse(&args[1]).expect("numeral argument cannot be parsed to integer");
+
+	println!(
+		"{}",
+		if check(n) {
+			"counter-example VERIFIED!"
+		} else {
+			"known cycle, regular number"
+		}
+	);
 }
