@@ -1,8 +1,23 @@
 [package]
-name = "collatz_finder" #"collatz" was taken lol
+name = "collatz_finder"                                                  #"collatz" was taken lol
+description = "Get XOR hash/digest with this command-line tool"
 version = "0.0.1"
 edition = "2021"
+repository = "https://github.com/Rudxain/collatz_finder"
+keywords = ["math", "Collatz", "conjecture", "search", "counterexample"]
+categories = ["command-line-utilities", "algorithms"]
+license = "Unlicense"
+
+[[bin]]
+name = "colfind"
+path = "src/main.rs"
 
 [dependencies]
 num-bigint = "0.4"
 num-traits = "0.2"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+#opt-level = 3 #to-do: try different values
