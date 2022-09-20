@@ -53,17 +53,25 @@ struct Cli {
 fn main() {
 	let cli = Cli::parse();
 
+	let mut lim = Limit {
+		pos: BigInt::from((1_i128 << 68) | 1),
+		neg: BigInt::from((-1_i64 << 33) | 1),
+	};
+
 	match &cli.action {
 		Action::Check => {
 			println!(
 				"{}",
-				if check(cli.n) {
+				if check(cli.n, lim) {
 					"counter-example VERIFIED!"
 				} else {
 					"known cycle, regular number"
 				}
 			);
 		}
-		Action::Search => {}
+		Action::Search => match search(cli.n.bits() as i128, lim) {
+			Some(n) => println!("found counter-example!\n{}", n),
+			None => println!("not found yet"),
+		},
 	}
 }

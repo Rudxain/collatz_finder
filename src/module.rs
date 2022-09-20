@@ -43,34 +43,64 @@ fn f(n: BigInt) -> BigInt {
 	trim(if n.bit(0) { 3 * n + 1 } else { n })
 }
 
+pub struct Limit {
+	pos: BigInt,
+	neg: BigInt,
+}
+
 ///check a single number against the Collatz algorithm
-pub fn check(mut n: BigInt) -> bool {
+pub fn check(mut n: BigInt, lim: Limit) -> bool {
 	n = trim(n);
 	let m = n.clone();
 
-	let lim_pos = BigInt::from((1_i128 << 68) | 1);
-	let lim_neg = BigInt::from((-1_i64 << 33) | 1);
-
 	if n.is_positive() {
-		if n <= lim_pos {
+		if n <= lim.pos {
 			return false;
 		}
 		loop {
 			n = f(n);
-			if n <= lim_pos {
+			if n <= lim.pos {
 				break;
 			}
 		}
 	} else {
-		if n >= lim_neg {
+		if n >= lim.neg {
 			return false;
 		}
 		loop {
 			n = f(n);
-			if n >= lim_neg {
+			if n >= lim.neg {
 				break;
 			}
 		}
 	}
 	n == m
+}
+
+pub fn search(len: i128, mut lim: Limit) -> Option<BigInt> {
+	let mut n;
+	if len < 0 {
+		for _ in len..0 {
+			n = f(lim.neg);
+			while n < lim.neg {
+				n = f(n)
+			}
+			if n == lim.neg {
+				return Some(lim.neg);
+			};
+			lim.neg -= 2;
+		}
+	} else {
+		for _ in 0..len {
+			n = f(lim.pos);
+			while n > lim.pos {
+				n = f(n)
+			}
+			if n == lim.pos {
+				return Some(lim.pos);
+			};
+			lim.pos += 2;
+		}
+	};
+	None
 }
