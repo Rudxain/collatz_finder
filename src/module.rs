@@ -8,7 +8,7 @@
 	clippy::unseparated_literal_suffix,
 	clippy::empty_structs_with_brackets,
 	clippy::format_push_string,
-	clippy::arithmetic_side_effects
+	//clippy::arithmetic_side_effects
 )]
 #![deny(clippy::unwrap_used)]
 #![forbid(
@@ -44,10 +44,11 @@ fn f(n: BigInt) -> BigInt {
 }
 
 pub struct Limit {
-	pos: BigInt,
-	neg: BigInt,
+	pub(crate) pos: BigInt,
+	pub(crate) neg: BigInt,
 }
 
+#[allow(clippy::needless_pass_by_value)]
 ///check a single number against the Collatz algorithm
 pub fn check(mut n: BigInt, lim: Limit) -> bool {
 	n = trim(n);
@@ -81,9 +82,9 @@ pub fn search(len: i128, mut lim: Limit) -> Option<BigInt> {
 	let mut n;
 	if len < 0 {
 		for _ in len..0 {
-			n = f(lim.neg);
+			n = f(lim.neg.clone());
 			while n < lim.neg {
-				n = f(n)
+				n = f(n);
 			}
 			if n == lim.neg {
 				return Some(lim.neg);
@@ -92,9 +93,9 @@ pub fn search(len: i128, mut lim: Limit) -> Option<BigInt> {
 		}
 	} else {
 		for _ in 0..len {
-			n = f(lim.pos);
+			n = f(lim.pos.clone());
 			while n > lim.pos {
-				n = f(n)
+				n = f(n);
 			}
 			if n == lim.pos {
 				return Some(lim.pos);

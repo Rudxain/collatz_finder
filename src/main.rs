@@ -11,7 +11,7 @@
 	clippy::unseparated_literal_suffix,
 	clippy::empty_structs_with_brackets,
 	clippy::format_push_string,
-	clippy::arithmetic_side_effects
+	//clippy::arithmetic_side_effects
 )]
 //can't `forbid` because of `module.rs` and `clap`
 #![deny(
@@ -34,6 +34,7 @@ use crate::module::*;
 use num_bigint::BigInt;
 
 use clap::Parser;
+use num_traits::ToPrimitive;
 
 #[derive(clap::Subcommand)]
 enum Action {
@@ -53,7 +54,7 @@ struct Cli {
 fn main() {
 	let cli = Cli::parse();
 
-	let mut lim = Limit {
+	let lim = Limit {
 		pos: BigInt::from((1_i128 << 68) | 1),
 		neg: BigInt::from((-1_i64 << 33) | 1),
 	};
@@ -69,7 +70,7 @@ fn main() {
 				}
 			);
 		}
-		Action::Search => match search(cli.n.bits() as i128, lim) {
+		Action::Search => match search(cli.n.to_i128().unwrap(), lim) {
 			Some(n) => println!("found counter-example!\n{}", n),
 			None => println!("not found yet"),
 		},
