@@ -52,30 +52,30 @@ pub struct Limit {
 ///check a single number against the Collatz algorithm
 pub fn check(mut n: BigInt, lim: Limit) -> bool {
 	n = trim(n);
-	let m = n.clone();
 
 	if n.is_positive() {
 		if n <= lim.pos {
 			return false;
 		}
+		let m = n.clone();
 		loop {
 			n = f(n);
 			if n <= lim.pos {
-				break;
+				return n == m;
 			}
 		}
 	} else {
 		if n >= lim.neg {
 			return false;
 		}
+		let m = n.clone();
 		loop {
 			n = f(n);
 			if n >= lim.neg {
-				break;
+				return n == m;
 			}
 		}
 	}
-	n == m
 }
 
 pub fn search(len: i128, mut lim: Limit) -> Option<BigInt> {
