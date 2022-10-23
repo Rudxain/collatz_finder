@@ -32,9 +32,9 @@ mod module;
 use crate::module::*;
 
 use num_bigint::BigInt;
+use num_traits::ToPrimitive;
 
 use clap::Parser;
-use num_traits::ToPrimitive;
 
 #[derive(clap::Subcommand)]
 enum Action {
