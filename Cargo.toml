@@ -2,7 +2,7 @@
 #"collatz" was taken lol
 name = "collatz_finder"
 description = "Get XOR hash/digest with this command-line tool"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 repository = "https://github.com/Rudxain/collatz_finder"
 keywords = ["math", "Collatz", "conjecture", "search", "counterexample"]
