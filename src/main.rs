@@ -38,11 +38,14 @@ use clap::Parser;
 
 #[derive(clap::Subcommand)]
 enum Action {
+	///verify a single integer
 	Check,
+	///check a range of values
 	Search,
 }
 #[derive(Parser)]
 #[clap(version, about = "searches counterexamples to the Collatz conjecture")]
+//WHY IS IT BACKWARDS?
 struct Cli {
 	#[clap(subcommand)]
 	action: Action,

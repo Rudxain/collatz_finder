@@ -1,15 +1,3 @@
-#![warn(
-	unused,
-	clippy::pedantic,
-	clippy::nursery,
-	clippy::shadow_unrelated,
-	clippy::string_to_string,
-	clippy::decimal_literal_representation,
-	clippy::unseparated_literal_suffix,
-	clippy::empty_structs_with_brackets,
-	clippy::format_push_string,
-	//clippy::arithmetic_side_effects
-)]
 #![deny(clippy::unwrap_used)]
 #![forbid(
 	unsafe_code,
@@ -28,17 +16,16 @@
 use num_bigint::BigInt;
 use num_traits::Signed;
 
-///remove all trailing zeros from a `BigInt`
+// how do we `impl` this for all `BigInt`s and `PrimInt`s?
+///remove all trailing-zero bits.
+#[allow(clippy::needless_pass_by_value)]
 fn trim(n: BigInt) -> BigInt {
-	match n.trailing_zeros() {
-		Some(z) => n >> z,
-		None => n,
-	}
+	&n >> n.trailing_zeros().unwrap_or(0)
 }
 
-///extreme shortcut Collatz function
+///extreme shortcut Collatz function.
 ///
-///same as "standard shortcut" but it trims all trailing zeros
+///same as "standard shortcut" but it `trim`s all trailing zeros.
 fn f(n: BigInt) -> BigInt {
 	trim(if n.bit(0) { 3 * n + 1 } else { n })
 }
@@ -49,7 +36,9 @@ pub struct Limit {
 }
 
 #[allow(clippy::needless_pass_by_value)]
-///check a single number against the Collatz algorithm
+///check a single number against the Collatz algorithm.
+///
+///returns `false` if it "converges", `true` if it disproves CC
 pub fn check(mut n: BigInt, lim: Limit) -> bool {
 	n = trim(n);
 
@@ -78,6 +67,9 @@ pub fn check(mut n: BigInt, lim: Limit) -> bool {
 	}
 }
 
+///check a range of values `len`.
+///
+///returns `None` if all ints "converge", `Some` if at least 1 int disproves CC
 pub fn search(len: i128, mut lim: Limit) -> Option<BigInt> {
 	let mut n;
 	if len < 0 {

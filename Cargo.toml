@@ -2,19 +2,20 @@
 #"collatz" was taken lol
 name = "collatz_finder"
 description = "Get XOR hash/digest with this command-line tool"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 repository = "https://github.com/Rudxain/collatz_finder"
 keywords = ["math", "Collatz", "conjecture", "search", "counterexample"]
 categories = ["command-line-utilities", "algorithms"]
 license = "Unlicense"
+exclude = [".*"]
 
 [[bin]]
 name = "colfind"
 path = "src/main.rs"
 
 [dependencies]
-clap = { version = "3.2.22", features = ["derive"] }
+clap = { version = "3.2", features = ["derive"] }
 num-bigint = "0.4"
 num-traits = "0.2"
 
@@ -22,4 +23,3 @@ num-traits = "0.2"
 strip = true
 lto = true
 codegen-units = 1
-#opt-level = 3 #to-do: try different values

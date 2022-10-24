@@ -1,21 +1,36 @@
 # Context
+
 [Website repo](https://github.com/Rudxain/Collatz-finder)
 
-# Usage
+## Usage
+
 To install:
+
 ```sh
 cargo install --git https://github.com/Rudxain/collatz_finder.git
 ```
 
 To check if a number `n` is a counter-example:
+
 ```sh
-collatz_finder [n]
+colfind [n] check
 ```
 
-Run this for more ℹinfo:
+To search a range of values:
+
 ```sh
-collatz_finder --help
+colfind [n] search
 ```
+
+Yes, the subcommand is in reverse, and IDK why.
+
+Run this for more ℹinfo:
+
+```sh
+colfind --help
+```
+
+## etc
 
 Just like my JS implementation, it supports negatives. ~It also supports multiple bases/radices~ (not anymore, sorry 🙁, I'll fix later).
 
