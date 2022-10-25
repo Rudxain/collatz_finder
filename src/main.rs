@@ -10,8 +10,7 @@
 	clippy::decimal_literal_representation,
 	clippy::unseparated_literal_suffix,
 	clippy::empty_structs_with_brackets,
-	clippy::format_push_string,
-	//clippy::arithmetic_side_effects
+	clippy::format_push_string
 )]
 //can't `forbid` because of `module.rs` and `clap`
 #![deny(
