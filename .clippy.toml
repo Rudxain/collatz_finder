@@ -1,7 +1,7 @@
 single-char-binding-names-threshold = 3
 too-large-for-stack = 256
 cognitive-complexity-threshold = 12
-array-size-threshold = 262144           #2^18
+array-size-threshold = 262144 #2^18
 enum-variant-size-threshold = 128
 too-many-arguments-threshold = 4
 literal-representation-threshold = 16
