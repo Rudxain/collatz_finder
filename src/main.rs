@@ -72,7 +72,7 @@ fn main() {
 				}
 			);
 		}
-		Action::Search => match search(cli.n.to_i128().unwrap(), lim) {
+		Action::Search => match search(cli.n.to_i128().expect("expected decimal numeral"), lim) {
 			Some(n) => println!("found counter-example!\n{}", n),
 			None => println!("not found yet"),
 		},
