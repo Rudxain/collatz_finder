@@ -1,6 +1,6 @@
 # Context
 
-[Website repo](https://github.com/Rudxain/Collatz-finder)
+[Website repo](https://github.com/Rudxain/Collatz-finder). I'm considering merging both repos into a monorepo
 
 ## Usage
 
