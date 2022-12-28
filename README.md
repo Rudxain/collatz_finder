@@ -10,24 +10,10 @@ To install:
 cargo install --git https://github.com/Rudxain/collatz_finder.git
 ```
 
-To check if a number `n` is a counter-example:
-
-```sh
-colfind [n] check
-```
-
-To search a range of values:
-
-```sh
-colfind [n] search
-```
-
-Yes, the subcommand is in reverse, and IDK why.
-
 Run this for more ℹinfo:
 
 ```sh
-colfind --help
+colfind help
 ```
 
 ## etc

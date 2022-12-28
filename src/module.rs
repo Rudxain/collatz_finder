@@ -1,3 +1,13 @@
+#![warn(
+	unused,
+	clippy::nursery,
+	clippy::shadow_unrelated,
+	clippy::string_to_string,
+	clippy::decimal_literal_representation,
+	clippy::unseparated_literal_suffix,
+	clippy::empty_structs_with_brackets,
+	clippy::format_push_string
+)]
 #![deny(clippy::unwrap_used)]
 #![forbid(
 	unsafe_code,
@@ -31,7 +41,9 @@ fn f(n: BigInt) -> BigInt {
 }
 
 pub struct Limit {
+	/// positive
 	pub(crate) pos: BigInt,
+	/// negative
 	pub(crate) neg: BigInt,
 }
 
@@ -67,11 +79,11 @@ pub fn check(mut n: BigInt, lim: Limit) -> bool {
 	}
 }
 
-///check a range of values `len`.
+/// check a range of values `len`.
 ///
-///returns `None` if all ints "converge", `Some` if at least 1 int disproves CC
+/// returns `None` if all ints "converge", `Some` if at least 1 int disproves CC
 pub fn search(len: i128, mut lim: Limit) -> Option<BigInt> {
-	let mut n;
+	let mut n: BigInt;
 	if len < 0 {
 		for _ in len..0 {
 			n = f(lim.neg.clone());
