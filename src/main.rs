@@ -66,6 +66,7 @@ fn main() -> ExitCode {
 
 	let arg1: String = args().skip(1).take(1).collect();
 
+	// currently known bounds in 2022
 	let lim = Limit {
 		pos: BigInt::from((1_i128 << 68) | 1),
 		neg: BigInt::from((-1_i64 << 33) | 1),
@@ -85,7 +86,6 @@ fn main() -> ExitCode {
 				);
 				return ExitCode::SUCCESS;
 			}
-
 			SubCmd::Check => {
 				match BigInt::from_str(args().skip(2).take(1).collect::<String>().as_str()) {
 					Ok(n) => {
@@ -108,7 +108,7 @@ fn main() -> ExitCode {
 			SubCmd::Search => {
 				match i128::from_str(args().skip(2).take(1).collect::<String>().as_str()) {
 					Ok(n) => {
-						match search(n, lim) {
+						match search(&Range::Int(n), lim) {
 							Some(n) => println!("found counter-example!\n{}", n),
 							None => println!("not found yet"),
 						}
