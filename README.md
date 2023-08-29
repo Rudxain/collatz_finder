@@ -2,6 +2,12 @@
 
 [Website repo](https://github.com/Rudxain/Collatz-finder). I'm considering merging both repos into a monorepo
 
+## Archive
+
+[Reason](https://youtube.com/watch?v=jlh21U2texo&lc=UgzLFcfKTav59WvOB0Z4AaABAg).
+
+WARNING: this repo is staged for potential deletion!
+
 ## Usage
 
 To install:
