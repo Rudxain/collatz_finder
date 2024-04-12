@@ -1,6 +1,6 @@
 # About
 
-[Website repo](https://github.com/Rudxain/Collatz-finder). I'm considering merging both repos into a monorepo
+[JS impl](https://github.com/Rudxain/Collatz-finder). I'm considering merging both repos into a monorepo
 
 ## Archive
 
