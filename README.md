@@ -13,7 +13,7 @@ However, the current purpose of this repo is just for learning purposes.
 
 ## Usage
 > [!important]
-> Expect **breaking changes at literally any time**.
+> Expect **breaking API changes at literally any time**.
 > 
 > I won't provide support for anything, but you can ask questions if you're curious about stuff.
 > 
