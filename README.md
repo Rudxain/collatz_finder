@@ -9,9 +9,13 @@
 > [!note]
 > This repo is in maintenance hiatus/stasis.
 
+## Intro
+This allows any human to aid in the search for a counterexample that disproves the Collatz Conjecture.
+
+However, the current purpose of this repo is just for learning purposes.
+
 ## Usage
 > [!important]
-> This repo is just for learning purposes.
 > Expect **breaking changes at literally any time**.
 > 
 > I won't provide support for anything, but you can ask questions if you're curious about stuff.
