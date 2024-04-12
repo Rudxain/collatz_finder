@@ -31,6 +31,9 @@ colfind help
 ```
 
 ## etc
+> [!note]
+> Both JS & Rs assume that numbers don't diverge to +♾️, they only search cycles. So they could enter an infinite loop that allocates increasingly more memory, until an [OOM](https://en.wikipedia.org/wiki/Out_of_memory) panic happens.
+
 Just like my JS implementation, it supports negatives. ~It also supports multiple bases/radices~ (not anymore, sorry 🙁, I might fix it later).
 
 The rationale behind the multi-base support, is that CC is more interesting and helpful to explore/experiment in **bases 2 & 3** and any other base whose factors are 2 and/or 3, and bases whose factors are +-1 offset from 2 and/or 3, so I had to add all bases from 1 to 10 (and hexdec, because it's binary in disguise)
