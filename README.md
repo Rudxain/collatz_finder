@@ -7,7 +7,7 @@
 > This repo is in maintenance hiatus/stasis.
 
 ## Intro
-This allows any human to aid in the search for a counterexample that disproves the Collatz Conjecture.
+This allows any human to aid in the search for a counter-example that disproves the Collatz Conjecture.
 
 However, currently, this repo is just for learning purposes.
 
