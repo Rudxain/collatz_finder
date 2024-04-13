@@ -9,7 +9,7 @@
 ## Intro
 This allows any human to aid in the search for a counterexample that disproves the Collatz Conjecture.
 
-However, the current purpose of this repo is just for learning purposes.
+However, currently, this repo is just for learning purposes.
 
 ## Usage
 > [!important]
