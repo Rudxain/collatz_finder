@@ -1,7 +1,7 @@
-# About
+# `colfind`
 
 ## Archive
-[Reason](https://youtube.com/watch?v=jlh21U2texo&lc=UgzLFcfKTav59WvOB0Z4AaABAg).
+[Reason](https://youtube.com/watch?v=jlh21U2texo&lc=UgzLFcfKTav59WvOB0Z4AaABAg)
 
 > [!note]
 > This repo is in maintenance hiatus/stasis.
@@ -43,10 +43,13 @@ Tip for smaller size: hexadecimal is more compact than dec, raw-binary is more c
 
 Another tip, **ensure nobody else takes credit for it.** I know that sounds egotistical, but nobody wants to give countless hours of computing power for free, am I right?
 
-## etc
+## Features
 > [!note]
 > The program assumes that numbers don't diverge to +♾️, it only searches cycles. So it could enter an infinite loop that allocates increasingly more memory, until an [OOM](https://en.wikipedia.org/wiki/Out_of_memory) panic happens.
 
-Just like my [JS implementation](https://github.com/Rudxain/Collatz-finder), it supports negatives. ~It also supports multiple bases/radices~ (not anymore, sorry 🙁, I might fix it later).
+It supports negatives. ~It also supports multiple bases/radices~ (not anymore, sorry 🙁, I might fix it later).
 
-The rationale behind the multi-base support, is that CC is more interesting and helpful to explore/experiment in **bases 2 & 3** and any other base whose factors are 2 and/or 3, and bases whose factors are +-1 offset from 2 and/or 3, so I had to add all bases from 1 to 10 (and hexdec, because it's binary in disguise)
+The rationale behind radix support, is that CC is more interesting and helpful to explore/experiment in **bases 2 & 3** and any other base whose factors are 2 and/or 3, and bases whose factors are +-1 offset from 2 and/or 3, so I had to add all bases from 1 to 10 (and hexdec, because it's binary in disguise)
+
+## See also
+[My blog](https://rudxain.github.io/blog/post/Collatz)
